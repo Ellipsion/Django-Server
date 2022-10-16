@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'graphene_django',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +50,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = False
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -74,13 +81,21 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ["PGDATABASE"],
-        'USER': os.environ["PGUSER"],
-        'PASSWORD': os.environ["PGPASSWORD"],
-        'HOST': os.environ["PGHOST"],
-        'PORT': os.environ["PGPORT"],
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': os.environ["PGDATABASE"],
+    #     'USER': os.environ["PGUSER"],
+    #     'PASSWORD': os.environ["PGPASSWORD"],
+    #     'HOST': os.environ["PGHOST"],
+    #     'PORT': os.environ["PGPORT"],
+    # },
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "ritsika-db",
+        "USER": "db_admin",
+        "PASSWORD": "V3slYDd1nHQUyCDyiSY8",
+        "HOST": "ritsika-test-db.c9rgthlwsgpn.ap-south-1.rds.amazonaws.com",
+        "PORT": "5432", 
     }
 }
 
